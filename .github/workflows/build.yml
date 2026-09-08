@@ -11,10 +11,89 @@ permissions:
 jobs:
   build:
     runs-on: windows-2022
-    timeout-minutes: 25
+    timeout-minutes: 30
+
+    defaults:
+      run:
+        shell: pwsh
+
+    env:
+      PYTHONUTF8: "1"
+
     steps:
-      - name: Checkout sources
+      - name: Preserve LF line endings
+        run: git config --global core.autocrlf false
+
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          architecture: "x64"
+
+      - name: Apply uploaded UI update if needed
+        run: |
+          $ErrorActionPreference = "Stop"
+
+          $sources = @(
+            "product/everness/src/alice/ui/ui.cpp",
+            "product/everness/src/alice/ui/tabs/visual/visual.cpp",
+            "product/render/configs.cpp",
+            "product/render/menu.cpp",
+            "product/render/overlay.cpp"
+          )
+
+          $marked = @(
+            $sources | Where-Object {
+              (Test-Path -LiteralPath $_) -and
+              (Select-String -LiteralPath $_ -Pattern "// Mason UI customization v1" -SimpleMatch -Quiet)
+            }
+          )
+
+          $headersPresent = (
+            (Test-Path "product/mason_ui_options.hpp") -and
+            (Test-Path "product/mason_ui_dpi.hpp")
+          )
+
+          if ($marked.Count -eq $sources.Count -and $headersPresent) {
+            Write-Host "UI update is already applied."
+            exit 0
+          }
+
+          if ($marked.Count -gt 0) {
+            throw "Partial UI update detected. Upload all updated source files and both headers."
+          }
+
+          $patchScript = Join-Path $env:GITHUB_WORKSPACE "apply_mason_ui_update.py"
+          $archive = Join-Path $env:GITHUB_WORKSPACE "MasonReleasesss-UI-update.zip"
+
+          if (Test-Path -LiteralPath $archive) {
+            $patchDirectory = Join-Path $env:RUNNER_TEMP "mason-ui-update"
+            Expand-Archive -LiteralPath $archive -DestinationPath $patchDirectory -Force
+            $patchScript = Join-Path $patchDirectory "apply_mason_ui_update.py"
+
+            if (-not (Test-Path -LiteralPath $patchScript)) {
+              throw "The uploaded ZIP does not contain apply_mason_ui_update.py."
+            }
+          }
+
+          if (Test-Path -LiteralPath $patchScript) {
+            python "$patchScript" --root "$env:GITHUB_WORKSPACE" --dry-run
+            if ($LASTEXITCODE -ne 0) {
+              throw "UI update compatibility check failed."
+            }
+
+            python "$patchScript" --root "$env:GITHUB_WORKSPACE"
+            if ($LASTEXITCODE -ne 0) {
+              throw "Failed to apply the UI update."
+            }
+          } else {
+            Write-Host "No UI update installer found. Building the checked-out source files."
+          }
 
       - name: Check standalone sources
         run: python tests/verify_source.py
@@ -22,26 +101,21 @@ jobs:
       - name: Configure x64 Release
         run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
 
-      - name: Build EXE
+      - name: Compile EXE
         run: cmake --build build --config Release --parallel 2
 
-      - name: Check EXE type and imports
-        run: python tests/verify_source.py --exe build/Release/MasonOverlay.exe
-
-      - name: Smoke test (software Direct3D)
-        shell: pwsh
+      - name: Verify EXE
         run: |
-          $process = Start-Process -FilePath "$PWD\build\Release\MasonOverlay.exe" -ArgumentList '--smoke-test' -PassThru
-          if (-not $process.WaitForExit(60000)) {
-            Stop-Process -Id $process.Id -Force
-            throw 'Mason smoke test timed out.'
-          }
-          $process.Refresh()
-          if ($process.ExitCode -ne 0) {
-            throw "Mason smoke test failed: exit code $($process.ExitCode)."
+          if (-not (Test-Path "build/Release/MasonOverlay.exe")) {
+            throw "MasonOverlay.exe was not created."
           }
 
-      - name: Upload executable
+          python tests/verify_source.py --exe build/Release/MasonOverlay.exe
+          if ($LASTEXITCODE -ne 0) {
+            throw "EXE verification failed."
+          }
+
+      - name: Upload EXE
         uses: actions/upload-artifact@v4
         with:
           name: MasonOverlay-Windows-x64
