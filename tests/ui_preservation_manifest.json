@@ -1,0 +1,172 @@
+[
+  {
+    "path": "everness/src/alice/animator/animator.cpp",
+    "original_sha256": "940d81ac05d1740b8573a49c46ca4b15a5cf78d08cadcbda0ad64b59493a57f5",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/animator/animator.hpp",
+    "original_sha256": "09932c3450dc37fb75d7019e1cf0b96a4cadd4df1fa23ca7606f69bcb394ad54",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/assets/assets.cpp",
+    "original_sha256": "0a53a18682d3cdff6fe9c28aef49e6d95957a75c1c15c40039de046672274a85",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/assets/assets.hpp",
+    "original_sha256": "f7112c69d49036bcfd32171fa1aa7ac7b249009cd9e825d7aa37062022a257cd",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/fonts/fonts.cpp",
+    "original_sha256": "f246effb0324094feaca6cbd6ff9ed45e9a7071d3d26c63e3806e5ddd1792635",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/fonts/fonts.hpp",
+    "original_sha256": "090cd6f76d06fb6ade4f7fac47ffc71b7ac03935ed6315458b99581acd58020d",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/fonts/include/font_awesome/font_awesome.hpp",
+    "original_sha256": "521034ad871103a4c7a7dcec9639f0946eb46f1c44a760bcadd63eec25197713",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/fonts/include/font_awesome/font_awesome_bytes.hpp",
+    "original_sha256": "07832d06653b98e59215cd6ef70cf1754c033a05aaf7d606fe79029e3a87f5ac",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/fonts/include/jetbrains_mono/jetbrains_mono_medium.hpp",
+    "original_sha256": "e7ef851717ac37b0a357db4fa3bd62d76e07bcaaf41802f8b086397154824c15",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/fonts/include/sf_compact/sf_compact_bold.hpp",
+    "original_sha256": "093a70851cdaf9885d9f60ae5d66282067a65179a24dc06ff1b4ce63d5ab5eb1",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/fonts/include/sf_compact/sf_compact_medium.hpp",
+    "original_sha256": "beebce5316cf8d8d10ecf77336a6e8c7f47687e9418fe4d52fa78c04694ad071",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/alerts/alerts.cpp",
+    "original_sha256": "95d23afaf7a5be824e7b176c3a08944d486fd3552d4b7b5c5dac24a0a12f9dcf",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/alerts/alerts.hpp",
+    "original_sha256": "f5a6aa3c01f47b09a07986479c8b60757c6015b7241dbc7946c6e3288c5e0a82",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/binder/binder.cpp",
+    "original_sha256": "fac1bafdfb28b33b8e7e46a97595179633b66ea83f2dc8ad7142be6fb0bc9c11",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/binder/binder.hpp",
+    "original_sha256": "aa419a56566a3fb00593c71b8506076f3b66607e5fa9c8b38e54ff81167db571",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/elem/elem.cpp",
+    "original_sha256": "28ad04a99edb163ce517821558d5e55b8f224295cdd28259245f272a13e23de3",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/elem/elem.hpp",
+    "original_sha256": "1e73635bae85525edcbcad818081ff6831243cba652f5cc513af836ab2126eb4",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/popups/popups.cpp",
+    "original_sha256": "32541cb190349d051a4d88d65b7dd63968f02eb9fd2fc54a21a8d44beaa83175",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/popups/popups.hpp",
+    "original_sha256": "5633845ef0196435e1f0cbc96b0eaecaf0ff35fe5abb6106cababd18e485817c",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/tabs/config/config.cpp",
+    "original_sha256": "a812f8d964aad10d52db89212dad9088703872e971ced1e341a53b7b88e94011",
+    "modified": true
+  },
+  {
+    "path": "everness/src/alice/ui/tabs/tabs.hpp",
+    "original_sha256": "5c24ebab8863cf610094704d272322afff88bd51232d1501874c5d3871e33b8f",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/tabs/visual/visual.cpp",
+    "original_sha256": "d7976c54f04223c8a0659527cea92c9297c5a7b6f0b3530148842f669572dd58",
+    "modified": true
+  },
+  {
+    "path": "everness/src/alice/ui/themes/themes.cpp",
+    "original_sha256": "5b852e52579ea459d790dc55acdeb2430acb353766fc82ed31baf447f449b0a6",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/themes/themes.hpp",
+    "original_sha256": "222f0bebe8320e9497c95ccc5972ab8b4e21363a993495fe3b2fe2b37c112ad0",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/ui.cpp",
+    "original_sha256": "b9321b78ff7b949255086a0a2501381947ec112a8e084b0428f6a6b5ebb38eb7",
+    "modified": true
+  },
+  {
+    "path": "everness/src/alice/ui/ui.hpp",
+    "original_sha256": "f5b4076a4c860980536ffe8d0f592370f8451b4a7a42024309f6665fdc019e46",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/widgets/hit_logs/hit_logs.cpp",
+    "original_sha256": "6498377ab636587bd393019f9cf630f54f945257de8036a0a213142045283947",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/widgets/hit_logs/hit_logs.hpp",
+    "original_sha256": "1ef516188735be73691bbd2d75a0617ffa25e63e1c1958d2491939f8f1b934f6",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/widgets/keybinds/keybinds.cpp",
+    "original_sha256": "23cc940b94b094616a079134968531bc21c19794ec882a4aee343b62bb50db48",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/widgets/keybinds/keybinds.hpp",
+    "original_sha256": "ecda6f1c5443d8dbedd5e21626f8380ef8bc7fe9890964e7b066567501967b37",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/widgets/watermark/watermark.cpp",
+    "original_sha256": "ea05d1468769354ca43f887cfcff4a06fd82c911b2a22c1d1994b85a65e26d2d",
+    "modified": true
+  },
+  {
+    "path": "everness/src/alice/ui/widgets/watermark/watermark.hpp",
+    "original_sha256": "cfe8ed1ab49d5e9fb76b4f4635ac83e923561d935099a1718fb9f959fe4c4c7b",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/widgets/widgets.cpp",
+    "original_sha256": "db8b7958526bf965b8089fb498d76f8d0f7c476e0e5686c566540028ab4607e5",
+    "modified": false
+  },
+  {
+    "path": "everness/src/alice/ui/widgets/widgets.hpp",
+    "original_sha256": "71c3b699b083d7fa7a4d40993b8dbaa3d9307119cd6c5b12f190090792822e66",
+    "modified": false
+  }
+]

@@ -1,0 +1,50 @@
+name: Build Mason Overlay
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 25
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Check standalone sources
+        run: python tests/verify_source.py
+
+      - name: Configure x64 Release
+        run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+
+      - name: Build EXE
+        run: cmake --build build --config Release --parallel 2
+
+      - name: Check EXE type and imports
+        run: python tests/verify_source.py --exe build/Release/MasonOverlay.exe
+
+      - name: Smoke test (software Direct3D)
+        shell: pwsh
+        run: |
+          $process = Start-Process -FilePath "$PWD\build\Release\MasonOverlay.exe" -ArgumentList '--smoke-test' -PassThru
+          if (-not $process.WaitForExit(60000)) {
+            Stop-Process -Id $process.Id -Force
+            throw 'Mason smoke test timed out.'
+          }
+          $process.Refresh()
+          if ($process.ExitCode -ne 0) {
+            throw "Mason smoke test failed: exit code $($process.ExitCode)."
+          }
+
+      - name: Upload executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: MasonOverlay-Windows-x64
+          path: build/Release/MasonOverlay.exe
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,11 @@
+To build the product you need freetype.lib (x64).
+
+Option 1 - vcpkg (easiest):
+  vcpkg install freetype:x64-windows
+  Then add to project: Library path = vcpkg\installed\x64-windows\lib
+  and add freetype.lib to linker inputs.
+
+Option 2 - Copy lib here:
+  Create folder: freetype\lib\x64
+  Put freetype.lib (Release x64) in that folder.
+  Build FreeType from source (CMake) or get a prebuilt from the menu seller.
